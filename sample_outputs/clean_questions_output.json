@@ -1,0 +1,101 @@
+{
+  "document_id": "546e2e2f-ffd4-4ee6-840c-d637ec73a29a",
+  "filename": "clean_questions.pdf",
+  "job_status": {
+    "id": "0968475e-a8eb-476b-ad1d-af2fb55612af",
+    "progress": 100,
+    "started_at": "2026-09-19T19:45:25.952489",
+    "created_at": "2026-09-19T19:45:25.938834",
+    "document_id": "546e2e2f-ffd4-4ee6-840c-d637ec73a29a",
+    "status": "COMPLETED",
+    "error_message": null,
+    "completed_at": "2026-09-19T19:45:26.025814"
+  },
+  "extracted_questions": [
+    {
+      "id": "fce462a3-e0e7-4bb0-9d14-4f9b830a4eba",
+      "question_number": "1",
+      "question": "Which letter follows A?",
+      "question_type": "MCQ",
+      "options": [
+        {
+          "key": "A",
+          "text": "B",
+          "confidence": 0.95
+        },
+        {
+          "key": "B",
+          "text": "C",
+          "confidence": 0.95
+        },
+        {
+          "key": "C",
+          "text": "D",
+          "confidence": 0.95
+        },
+        {
+          "key": "D",
+          "text": "E",
+          "confidence": 0.95
+        }
+      ],
+      "answer": {
+        "value": "A",
+        "status": "MATCHED",
+        "confidence": 0.94
+      },
+      "source": {
+        "document_id": "546e2e2f-ffd4-4ee6-840c-d637ec73a29a",
+        "pages": [
+          1
+        ]
+      },
+      "confidence": 0.95,
+      "status": "SUCCESS",
+      "warnings": []
+    },
+    {
+      "id": "cad0da3e-b250-4456-91d9-95aef47a93ab",
+      "question_number": "2",
+      "question": "Select the primary color.",
+      "question_type": "MCQ",
+      "options": [
+        {
+          "key": "A",
+          "text": "Red",
+          "confidence": 0.95
+        },
+        {
+          "key": "B",
+          "text": "Black",
+          "confidence": 0.95
+        },
+        {
+          "key": "C",
+          "text": "White",
+          "confidence": 0.95
+        },
+        {
+          "key": "D",
+          "text": "Gray",
+          "confidence": 0.95
+        }
+      ],
+      "answer": {
+        "value": "A",
+        "status": "MATCHED",
+        "confidence": 0.94
+      },
+      "source": {
+        "document_id": "546e2e2f-ffd4-4ee6-840c-d637ec73a29a",
+        "pages": [
+          1
+        ]
+      },
+      "confidence": 0.95,
+      "status": "SUCCESS",
+      "warnings": []
+    }
+  ],
+  "review_items": []
+}

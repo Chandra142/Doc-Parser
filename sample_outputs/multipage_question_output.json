@@ -1,0 +1,60 @@
+{
+  "document_id": "76aa56ce-ea8e-4d0c-8fb8-23d89c601ccb",
+  "filename": "multipage_question.pdf",
+  "job_status": {
+    "id": "c07b3676-65a4-4f40-859d-97a9a48d5299",
+    "progress": 100,
+    "started_at": "2026-09-19T19:45:26.171503",
+    "created_at": "2026-09-19T19:45:26.160626",
+    "document_id": "76aa56ce-ea8e-4d0c-8fb8-23d89c601ccb",
+    "status": "COMPLETED",
+    "error_message": null,
+    "completed_at": "2026-09-19T19:45:26.213659"
+  },
+  "extracted_questions": [
+    {
+      "id": "0a7d2d25-e97b-4b4d-b75e-110625462934",
+      "question_number": "12",
+      "question": "Which option completes this question?",
+      "question_type": "MCQ",
+      "options": [
+        {
+          "key": "A",
+          "text": "Alpha",
+          "confidence": 1.0
+        },
+        {
+          "key": "B",
+          "text": "Beta",
+          "confidence": 1.0
+        },
+        {
+          "key": "C",
+          "text": "Gamma",
+          "confidence": 1.0
+        },
+        {
+          "key": "D",
+          "text": "Delta",
+          "confidence": 1.0
+        }
+      ],
+      "answer": {
+        "value": null,
+        "status": "NOT_FOUND",
+        "confidence": 0.0
+      },
+      "source": {
+        "document_id": "76aa56ce-ea8e-4d0c-8fb8-23d89c601ccb",
+        "pages": [
+          1,
+          2
+        ]
+      },
+      "confidence": 1.0,
+      "status": "SUCCESS",
+      "warnings": []
+    }
+  ],
+  "review_items": []
+}

@@ -1,0 +1,59 @@
+{
+  "document_id": "1ab33f62-02e2-48b4-a718-947a7caed472",
+  "filename": "low_quality_question.png",
+  "job_status": {
+    "id": "326c6f2e-6256-4a11-b397-36fdb4f2048f",
+    "progress": 100,
+    "started_at": "2026-09-19T19:45:26.817438",
+    "created_at": "2026-09-19T19:45:26.808917",
+    "document_id": "1ab33f62-02e2-48b4-a718-947a7caed472",
+    "status": "COMPLETED",
+    "error_message": null,
+    "completed_at": "2026-09-19T19:45:26.868021"
+  },
+  "extracted_questions": [
+    {
+      "id": "66b2dcaf-fb2f-40e8-9040-4a0212a71338",
+      "question_number": "1",
+      "question": "Low quality question",
+      "question_type": "MCQ",
+      "options": [
+        {
+          "key": "A",
+          "text": "Alpha",
+          "confidence": 0.9
+        },
+        {
+          "key": "B",
+          "text": "Beta",
+          "confidence": 0.9
+        },
+        {
+          "key": "C",
+          "text": "Gamma",
+          "confidence": 0.9
+        },
+        {
+          "key": "D",
+          "text": "Delta",
+          "confidence": 0.9
+        }
+      ],
+      "answer": {
+        "value": null,
+        "status": "NOT_FOUND",
+        "confidence": 0.0
+      },
+      "source": {
+        "document_id": "1ab33f62-02e2-48b4-a718-947a7caed472",
+        "pages": [
+          1
+        ]
+      },
+      "confidence": 0.9,
+      "status": "SUCCESS",
+      "warnings": []
+    }
+  ],
+  "review_items": []
+}

@@ -1,0 +1,108 @@
+{
+  "question_paper_document_id": "1fc424d1-f899-46ff-8e01-994b8107c20f",
+  "answer_key_document_id": "23d21c88-6edd-4a5c-b0ed-f6d4090a3614",
+  "relationship": {
+    "source_document_id": "1fc424d1-f899-46ff-8e01-994b8107c20f",
+    "target_document_id": "23d21c88-6edd-4a5c-b0ed-f6d4090a3614",
+    "relationship_type": "ANSWER_KEY",
+    "id": "df2f5279-67a5-4ed0-9b5a-8907d1cd29a6"
+  },
+  "extracted_questions_with_matched_answers": [
+    {
+      "id": "1351a8fd-3fe3-4c2d-9754-b53d40defb93",
+      "question_number": "1",
+      "question": "First question",
+      "question_type": "MCQ",
+      "options": [
+        {
+          "key": "A",
+          "text": "Alpha",
+          "confidence": 0.95
+        },
+        {
+          "key": "B",
+          "text": "Beta",
+          "confidence": 0.95
+        }
+      ],
+      "answer": {
+        "value": "B",
+        "status": "MATCHED",
+        "confidence": 0.96
+      },
+      "source": {
+        "document_id": "1fc424d1-f899-46ff-8e01-994b8107c20f",
+        "pages": [
+          1
+        ]
+      },
+      "confidence": 0.95,
+      "status": "SUCCESS",
+      "warnings": []
+    },
+    {
+      "id": "f75d7322-53f6-4231-b8c5-9e04ce5338dc",
+      "question_number": "2",
+      "question": "Second question",
+      "question_type": "MCQ",
+      "options": [
+        {
+          "key": "A",
+          "text": "One",
+          "confidence": 0.95
+        },
+        {
+          "key": "B",
+          "text": "Two",
+          "confidence": 0.95
+        }
+      ],
+      "answer": {
+        "value": "A",
+        "status": "MATCHED",
+        "confidence": 0.96
+      },
+      "source": {
+        "document_id": "1fc424d1-f899-46ff-8e01-994b8107c20f",
+        "pages": [
+          1
+        ]
+      },
+      "confidence": 0.95,
+      "status": "SUCCESS",
+      "warnings": []
+    },
+    {
+      "id": "d981b818-c8df-4a8a-a4f8-ebe460b70a31",
+      "question_number": "3",
+      "question": "Unmatched question",
+      "question_type": "MCQ",
+      "options": [
+        {
+          "key": "A",
+          "text": "Yes",
+          "confidence": 0.95
+        },
+        {
+          "key": "B",
+          "text": "No",
+          "confidence": 0.95
+        }
+      ],
+      "answer": {
+        "value": null,
+        "status": "NOT_FOUND",
+        "confidence": 0.0
+      },
+      "source": {
+        "document_id": "1fc424d1-f899-46ff-8e01-994b8107c20f",
+        "pages": [
+          1
+        ]
+      },
+      "confidence": 0.95,
+      "status": "SUCCESS",
+      "warnings": []
+    }
+  ]
+}
