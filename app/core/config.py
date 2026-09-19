@@ -20,6 +20,12 @@ class Settings(BaseSettings):
     confidence_success_threshold: float = 0.85
     confidence_partial_threshold: float = 0.60
     ocr_upscale_factor: int = 2
+    storage_backend: str = "local"
+    aws_access_key_id: str | None = None
+    aws_secret_access_key: str | None = None
+    aws_region_name: str | None = None
+    s3_bucket_name: str | None = None
+    s3_endpoint_url: str | None = None
     host: str = "0.0.0.0"
     port: int = 8000
 settings = Settings()

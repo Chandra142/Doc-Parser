@@ -18,6 +18,7 @@ services:
       DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://docuquest:docuquest@postgres:5432/docuquest}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
       JWT_SECRET: ${JWT_SECRET:-development-only-change-me}
+      PYTHONPATH: /app
     command: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
     ports: ["8000:8000"]
     volumes: ["./data:/app/data"]
@@ -31,6 +32,7 @@ services:
       DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://docuquest:docuquest@postgres:5432/docuquest}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
       JWT_SECRET: ${JWT_SECRET:-development-only-change-me}
+      PYTHONPATH: /app
     command: celery -A app.workers.celery worker -l INFO -Q documents
     volumes: ["./data:/app/data"]
     depends_on: {postgres: {condition: service_healthy}, redis: {condition: service_healthy}}

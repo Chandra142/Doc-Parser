@@ -54,19 +54,29 @@ class TesseractOCRProvider(BaseOCRProvider):
         except Exception as exc:
             raise RuntimeError("Tesseract OCR is unavailable") from exc
 
-        words = []
+        # Reconstruct proper line breaks from Tesseract block/line metadata.
+        # Previously all words were joined with " ".join() into one flat string,
+        # which caused parse_questions()'s splitlines() to see a single line
+        # starting with non-numeric text, so the QUESTION regex never matched.
+        lines: dict[tuple, list[str]] = {}
         scores = []
-        for word, score in zip(data["text"], data["conf"]):
+        for word, score, block, line_num in zip(
+            data["text"], data["conf"], data["block_num"], data["line_num"]
+        ):
             if word.strip():
-                words.append(word)
+                key = (block, line_num)
+                lines.setdefault(key, []).append(word)
                 try:
                     if float(score) >= 0:
                         scores.append(float(score) / 100)
                 except ValueError:
                     pass
 
+        reconstructed = "\n".join(
+            " ".join(words) for words in lines.values()
+        )
         avg_score = sum(scores) / len(scores) if scores else 0.0
-        return OCRResult(text=" ".join(words), confidence=avg_score)
+        return OCRResult(text=reconstructed, confidence=avg_score)
 
 
 def get_ocr_provider() -> BaseOCRProvider:
@@ -91,7 +101,13 @@ def _ocr(image: Image.Image) -> OCRResult:
     return get_ocr_provider().extract(preprocess(image))
 
 
-class LocalStorage:
+class StorageProvider:
+    def save(self, src: io.BytesIO, original: str) -> tuple[str, str]:
+        raise NotImplementedError
+    def get_file_content(self, path: str) -> bytes:
+        raise NotImplementedError
+
+class LocalStorage(StorageProvider):
     def save(self, src: io.BytesIO, original: str) -> tuple[str, str]:
         settings.storage_path.mkdir(parents=True, exist_ok=True)
         name = f"{uuid.uuid4()}{Path(original).suffix.lower()}"
@@ -99,6 +115,34 @@ class LocalStorage:
         with target.open("wb") as out:
             shutil.copyfileobj(src, out)
         return name, str(target.resolve())
+    def get_file_content(self, path: str) -> bytes:
+        with open(path, "rb") as f:
+            return f.read()
+
+class S3Storage(StorageProvider):
+    def __init__(self):
+        import boto3
+        self.s3 = boto3.client(
+            "s3",
+            aws_access_key_id=settings.aws_access_key_id,
+            aws_secret_access_key=settings.aws_secret_access_key,
+            region_name=settings.aws_region_name,
+            endpoint_url=settings.s3_endpoint_url
+        )
+        self.bucket = settings.s3_bucket_name
+    def save(self, src: io.BytesIO, original: str) -> tuple[str, str]:
+        name = f"{uuid.uuid4()}{Path(original).suffix.lower()}"
+        self.s3.upload_fileobj(src, self.bucket, name)
+        return name, name
+    def get_file_content(self, path: str) -> bytes:
+        out = io.BytesIO()
+        self.s3.download_fileobj(self.bucket, path, out)
+        return out.getvalue()
+
+def get_storage() -> StorageProvider:
+    if settings.storage_backend == "s3":
+        return S3Storage()
+    return LocalStorage()
 
 
 def validate_content(data: bytes, kind: str) -> None:
@@ -118,8 +162,9 @@ def validate_content(data: bytes, kind: str) -> None:
 
 
 def extract_pages(path: str, file_type: str) -> list[tuple[int, str, int, str, float | None]]:
+    data = get_storage().get_file_content(path)
     if file_type == "pdf":
-        doc = fitz.open(path)
+        doc = fitz.open(stream=data, filetype="pdf")
         result = []
         try:
             if not doc.page_count:
@@ -137,7 +182,7 @@ def extract_pages(path: str, file_type: str) -> list[tuple[int, str, int, str, f
         finally:
             doc.close()
 
-    with Image.open(path) as image:
+    with Image.open(io.BytesIO(data)) as image:
         ocr = _ocr(image.copy())
         return [(1, ocr.text, 0, "ocr", ocr.confidence)]
 

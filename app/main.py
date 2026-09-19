@@ -27,7 +27,7 @@ from app.models import (
     User,
 )
 from app.services import (
-    LocalStorage,
+    get_storage,
     _match_related,
     process_document,
     validate_content,
@@ -226,7 +226,7 @@ def upload(
             detail={"code": "MALFORMED_DOCUMENT", "message": str(exc)},
         )
 
-    filename, path = LocalStorage().save(io.BytesIO(data), name)
+    filename, path = get_storage().save(io.BytesIO(data), name)
     doc = Document(
         filename=filename,
         original_filename=Path(name).name,

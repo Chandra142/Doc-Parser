@@ -10,7 +10,7 @@ def auth(email="a@example.com"):
     client.post("/api/v1/auth/register",json={"email":email,"password":"password123"})
     return {"Authorization":"Bearer "+client.post("/api/v1/auth/login",json={"email":email,"password":"password123"}).json()["access_token"]}
 def test_auth_and_upload_rejection():
-    assert client.get("/api/v1/documents").status_code==403
+    assert client.get("/api/v1/documents").status_code==401
     h=auth(); r=client.post("/api/v1/documents",headers=h,files={"file":("x.txt",b"nope","text/plain")}); assert r.status_code==415
 def test_pdf_extraction():
     import fitz
